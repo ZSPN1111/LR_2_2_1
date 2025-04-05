@@ -12,7 +12,7 @@ X = []
 y = []
 count_class1 = 0
 count_class2 = 0
-max_datapoints = 25000
+max_datapoints = 10000
 
 with open(input_file, 'r') as f:
     for line in f.readlines():
@@ -47,8 +47,8 @@ y_labels = X_encoded[:, -1].astype(int)
 
 X_train, X_test, y_train, y_test = train_test_split(X_features, y_labels, test_size=0.2, random_state=5)
 
-# Поліноміальне ядро
-classifier_poly = SVC(kernel='poly', degree=8)
+# Поліноміальне ядро з меншим ступенем
+classifier_poly = SVC(kernel='poly', degree=3)  # Зменшили degree для пришвидшення
 classifier_poly.fit(X_train, y_train)
 y_test_pred_poly = classifier_poly.predict(X_test)
 
